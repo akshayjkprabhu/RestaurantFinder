@@ -60,15 +60,42 @@ class SearchUseCaseImpl(private val restaurantRepo : RestaurantRepository) : Sea
 		}
 	}
 	
-	/**
-	 *
-	 */
 	private suspend fun performSearch(
-			repositoryData : List<Restaurant>,
+			restaurantList : List<Restaurant>,
 			menuList : List<RestaurantMenu>?,
 			searchTerm : String
 	) : UseCaseResult<List<Restaurant>> {
-	
-	
+		/**
+		 * If the list it too long, then the calculation can take
+		 * time, Move the logic into the Default Dispatcher
+		 */
+		return withContext(Dispatchers.Default) {
+			/**
+			 * Find all the restaurantIds which have matching item namse
+			 */
+			val restaurantIds = menuList?.filter {
+				it.matches(searchTerm)
+			}?.map {
+				it.restaurantId
+			}
+			
+			/**
+			 * Get the final list by matching name / cuisine /
+			 * item names (using already filtered [restaurantIds]
+			 */
+			val list = restaurantList.filter {
+				it.matches(searchTerm) ||
+				restaurantIds?.contains(it.restaurantId) ?: false
+			}
+			/**
+			 * Return the Usecase results
+			 */
+			return@withContext if (list.isEmpty()) {
+				UseCaseResult.Failure(Error(ErrorType.EMPTY_SEARCH_RESULTS))
+			} else {
+				UseCaseResult.Success(list)
+			}
+			
+		}
 	}
 }

@@ -4,15 +4,59 @@ data class Restaurant(
 		val restaurantId : Int,
 		val restaurantName : String,
 		val cuisineType : String
-)
+) : Matcher, IListItem {
+	override fun matches(searchTerm : String) : Boolean {
+		return restaurantName matches searchTerm ||
+		       cuisineType matches searchTerm
+	}
+	
+	override fun itemType() = ItemType.CONTENT
+}
 
 data class RestaurantMenu(
 		val restaurantId : Int,
 		val categories : List<Category>
-)
+) : Matcher {
+	override fun matches(searchTerm : String) : Boolean {
+		return categories.any { it.matches(searchTerm) }
+	}
+}
 
-data class Category(val catId : Int, val catName : String)
+data class Category(
+		val catId : Int,
+		val catName : String,
+		val items : List<MenuItem>
+) : Matcher {
+	override fun matches(searchTerm : String) : Boolean {
+		return items.any { it.matches(searchTerm) }
+	}
+}
 
-data class MenuItem(val itemId : Int, val itemName : String, val price : Double)
+data class MenuItem(
+		val itemId : Int,
+		val itemName : String,
+		val price : Double
+) : Matcher {
+	
+	override fun matches(searchTerm : String) : Boolean {
+		return itemName matches searchTerm
+	}
+}
 
+private infix fun String.matches(searchTerm : String) : Boolean {
+	return lowercase().contains(searchTerm.lowercase())
+}
 
+interface Matcher {
+	fun matches(searchTerm : String) : Boolean
+}
+
+interface IListItem {
+	fun itemType() : ItemType
+}
+
+enum class ItemType(val id : Int) {
+	HEADER(1),
+	ERROR(2),
+	CONTENT(3)
+}
