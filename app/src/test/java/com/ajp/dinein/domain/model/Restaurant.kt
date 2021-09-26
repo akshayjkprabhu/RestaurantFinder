@@ -11,7 +11,11 @@ class RestaurantTest {
 	
 	@Before
 	fun initialize() {
-		restaurant = Restaurant(2, "Shanthi Sagar", "Indian, South Indian, Breakfast")
+		restaurant = Restaurant(
+				2, "Shanthi Sagar",
+				"Indian, South Indian, Breakfast",
+				null, "Maipal", 2
+		)
 	}
 	
 	@Test
@@ -36,7 +40,7 @@ class RestaurantTest {
 }
 
 class MatcherTest {
-	lateinit var text : String
+	private lateinit var text : String
 	
 	@Before
 	fun initialize() {

@@ -3,7 +3,6 @@ package com.ajp.dinein
 import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.ajp.dinein.domain.model.Restaurant
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
