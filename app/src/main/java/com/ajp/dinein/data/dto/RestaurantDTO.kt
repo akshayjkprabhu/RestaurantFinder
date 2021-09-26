@@ -13,7 +13,9 @@ data class RestaurantListResponse(
 data class RestaurantDTO(
 		@SerializedName("id") val id : Int,
 		@SerializedName("name") val name : String,
-		@SerializedName("cuisine_type") val cuisineType : String
+		@SerializedName("cuisine_type") val cuisineType : String,
+		@SerializedName("photograph") val image : String,
+		@SerializedName("neighborhood") val location : String,
 )
 
 data class MenuResponse(

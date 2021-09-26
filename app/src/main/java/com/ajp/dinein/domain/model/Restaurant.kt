@@ -3,7 +3,10 @@ package com.ajp.dinein.domain.model
 data class Restaurant(
 		val restaurantId : Int,
 		val restaurantName : String,
-		val cuisineType : String
+		val cuisineType : String,
+		val image : String?,
+		val location : String?,
+		val reviewCount : Int
 ) : Matcher, IListItem {
 	override fun matches(searchTerm : String) : Boolean {
 		return restaurantName has searchTerm ||
@@ -11,6 +14,8 @@ data class Restaurant(
 	}
 	
 	override fun itemType() = ItemType.CONTENT
+	
+	fun reviews() = "$reviewCount Reviews"
 }
 
 data class RestaurantMenu(
