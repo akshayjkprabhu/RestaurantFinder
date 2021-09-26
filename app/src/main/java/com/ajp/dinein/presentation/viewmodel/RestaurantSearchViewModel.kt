@@ -1,8 +1,11 @@
 package com.ajp.dinein.presentation.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ajp.dinein.core.base.BaseViewModel
 import com.ajp.dinein.core.util.Logger
+import com.ajp.dinein.domain.model.Error
+import com.ajp.dinein.domain.model.Restaurant
 import com.ajp.dinein.domain.usecase.search.SearchUseCase
 import com.ajp.dinein.domain.usecase.UseCaseResult
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +20,8 @@ class RestaurantSearchViewModel(private val searchUseCase : SearchUseCase) : Bas
 		Logger.d(TAG, "RestaurantSearchViewModel : init")
 	}
 	
+	val restaurantResults : MutableLiveData<List<Restaurant>> = MutableLiveData()
+	
 	fun searchRestaurantFor(searchText : String?) {
 		
 		viewModelScope.launch(Dispatchers.IO) {
@@ -24,19 +29,26 @@ class RestaurantSearchViewModel(private val searchUseCase : SearchUseCase) : Bas
 				showProgressBar(true)
 			}
 			
-			val result = searchUseCase.searchRestaurant("ABC")
+			val result = searchUseCase.searchRestaurant(searchText)
 			
 			onMain {
+				showProgressBar(false)
 				when (result) {
 					is UseCaseResult.Success -> {
-						result.data
+						restaurantResults.value = result.data
 					}
 					is UseCaseResult.Failure -> {
-						// Handle Error Here
+						handleSearchError(result.exception)
 					}
 				}
 				
 			}
+		}
+	}
+	
+	private fun handleSearchError(exception : Error) {
+		when (exception.errorType) {
+			// Handle differnt errors
 		}
 	}
 }

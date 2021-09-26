@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 
 class SearchUseCaseImpl(private val restaurantRepo : RestaurantRepository) : SearchUseCase {
 	
-	override suspend fun searchRestaurant(searchTerm : String) : UseCaseResult<List<Restaurant>> {
+	override suspend fun searchRestaurant(searchTerm : String?) : UseCaseResult<List<Restaurant>> {
 		return withContext(Dispatchers.IO) {
 			val restaurantCall = async {
 				restaurantRepo.fetchRestaurants()
@@ -31,7 +31,7 @@ class SearchUseCaseImpl(private val restaurantRepo : RestaurantRepository) : Sea
 	private suspend fun onRestaurantResults(
 			restaurantResult : RepositoryResult<List<Restaurant>>,
 			menuResult : RepositoryResult<List<RestaurantMenu>>,
-			searchTerm : String
+			searchTerm : String?
 	) : UseCaseResult<List<Restaurant>> {
 		
 		return when (restaurantResult) {
@@ -40,7 +40,7 @@ class SearchUseCaseImpl(private val restaurantRepo : RestaurantRepository) : Sea
 					restaurantResult.repositoryData.isEmpty() -> {
 						UseCaseResult.Failure(Error(ErrorType.NO_DATA_AVAILABLE))
 					}
-					searchTerm.isBlank() -> {
+					searchTerm.isNullOrBlank() -> {
 						// If user has not searched yet, show the entire restaurant results
 						UseCaseResult.Success(restaurantResult.repositoryData)
 					}
