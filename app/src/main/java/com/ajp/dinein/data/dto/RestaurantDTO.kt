@@ -3,11 +3,11 @@ package com.ajp.dinein.data.dto
 import com.google.gson.annotations.SerializedName
 
 /**
- * RestaurantList
+ * File Containing Json Parser POJOS
  */
+
 data class RestaurantListResponse(
-		@SerializedName("restaurants")
-		val restaurants : List<RestaurantDTO>?
+		@SerializedName("restaurants") val restaurants : List<RestaurantDTO>?
 ) : BaseResponse()
 
 data class RestaurantDTO(
@@ -19,29 +19,21 @@ data class RestaurantDTO(
 )
 
 data class MenuResponse(
-		@SerializedName("menus")
-		val menuList : List<RestaurantMenuDTO>? = null
+		@SerializedName("menus") val menuList : List<RestaurantMenuDTO>? = null
 )
 
 data class RestaurantMenuDTO(
-		@SerializedName("restaurantId")
-		val restaurantId : Int,
-		@SerializedName("categories")
-		val categories : List<CategoryDTO>?
+		@SerializedName("restaurantId") val restaurantId : Int,
+		@SerializedName("categories") val categories : List<CategoryDTO>?
 )
 
 data class CategoryDTO(
-		@SerializedName("id")
-		val categoryId : Int,
-		@SerializedName("name")
-		val categoryName : String,
-		@SerializedName("menu-items")
-		val items : List<ItemDTO>?
+		@SerializedName("id") val categoryId : Int,
+		@SerializedName("name") val categoryName : String,
+		@SerializedName("menu-items") val items : List<ItemDTO>?
 )
 
 data class ItemDTO(
-		@SerializedName("id")
-		val itemId : Int,
-		@SerializedName("name")
-		val itemName : String
+		@SerializedName("id") val itemId : Int,
+		@SerializedName("name") val itemName : String
 )

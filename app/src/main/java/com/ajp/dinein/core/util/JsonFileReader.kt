@@ -5,6 +5,9 @@ import java.io.IOException
 import java.nio.charset.Charset
 
 object JsonFileReader {
+	/**
+	 * reads file from the assets folder and returns json string (Any string present in the file)
+	 */
 	fun readFromAsset(filename : String, context : Context) : String {
 		try {
 			context.assets.open(filename).use { stream ->

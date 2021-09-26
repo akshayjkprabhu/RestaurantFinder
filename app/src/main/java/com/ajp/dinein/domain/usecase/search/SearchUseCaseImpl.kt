@@ -10,6 +10,11 @@ import kotlinx.coroutines.withContext
 
 class SearchUseCaseImpl(private val restaurantRepo : RestaurantRepository) : SearchUseCase {
 	
+	/**
+	 * Fetch both menu list and restaurant list,
+	 * once the result is available, [onRestaurantResults] is called
+	 * On Execption , [UseCaseResult.Failure] is returned as result
+	 */
 	override suspend fun searchRestaurant(searchTerm : String?) : UseCaseResult<List<Restaurant>> {
 		return withContext(Dispatchers.IO) {
 			val restaurantCall = async {
@@ -23,11 +28,15 @@ class SearchUseCaseImpl(private val restaurantRepo : RestaurantRepository) : Sea
 				val menuResult = menuCall.await()
 				onRestaurantResults(restaurantResult, menuResult, searchTerm)
 			} catch (e : Exception) {
-				UseCaseResult.Failure(Error(ErrorType.UNDEFINED))
+				UseCaseResult.Failure(Error(ErrorType.COULD_NOT_FETCH))
 			}
 		}
 	}
 	
+	/**
+	 * Validates the [restaurantResult] and [menuResult]
+	 * before performing [performSearch]
+	 */
 	private suspend fun onRestaurantResults(
 			restaurantResult : RepositoryResult<List<Restaurant>>,
 			menuResult : RepositoryResult<List<RestaurantMenu>>,
@@ -60,6 +69,16 @@ class SearchUseCaseImpl(private val restaurantRepo : RestaurantRepository) : Sea
 		}
 	}
 	
+	/**
+	 * [restaurantList] will not be empty
+	 * [menuList] can be null
+	 *
+	 * This method will first get list of all restaurant Ids for which the items are matching
+	 * Returns [UseCaseResult.Success] with list of [Restaurant] as data where,
+	 * 1. Restaurant Id is contained in the above list of Ids OR
+	 * 2. Restaurant name is matching the search term
+	 * 3. Restaurant cuisine type is matching the search term
+	 */
 	private suspend fun performSearch(
 			restaurantList : List<Restaurant>,
 			menuList : List<RestaurantMenu>?,
@@ -81,7 +100,7 @@ class SearchUseCaseImpl(private val restaurantRepo : RestaurantRepository) : Sea
 			
 			/**
 			 * Get the final list by matching name / cuisine /
-			 * item names (using already filtered [restaurantIds]
+			 * item names (using already filtered restaurantIds
 			 */
 			val list = restaurantList.filter {
 				it.matches(searchTerm) ||

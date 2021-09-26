@@ -7,7 +7,7 @@ import com.ajp.dinein.databinding.ItemRestaurantBinding
 import com.ajp.dinein.domain.model.IListItem
 import com.ajp.dinein.domain.model.Restaurant
 
-class SearchAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SearchAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 	
 	private var searchItemList : List<IListItem>? = null
 	

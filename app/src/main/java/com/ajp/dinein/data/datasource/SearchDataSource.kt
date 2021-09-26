@@ -1,7 +1,7 @@
 package com.ajp.dinein.data.datasource
 
-import com.ajp.dinein.data.dto.*
-import com.ajp.dinein.domain.repo.RepositoryResult
+import com.ajp.dinein.data.dto.MenuResponse
+import com.ajp.dinein.data.dto.RestaurantListResponse
 
 interface SearchDataSource {
 	suspend fun fetchRestaurantsAsync() : RestaurantListResponse

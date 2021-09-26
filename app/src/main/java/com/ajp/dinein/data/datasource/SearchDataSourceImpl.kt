@@ -5,7 +5,6 @@ import com.ajp.dinein.core.util.JsonFileReader
 import com.ajp.dinein.core.util.Logger
 import com.ajp.dinein.data.dto.MenuResponse
 import com.ajp.dinein.data.dto.RestaurantListResponse
-import com.ajp.dinein.data.repo.home.RestaurantRepositoryImpl
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -33,12 +34,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical"
                 android:visibility="@{uiState.enableMessageView ? View.VISIBLE : View.GONE}">
 
                 <ProgressBar
@@ -47,7 +50,22 @@
                     android:layout_gravity="center"
                     android:visibility="@{uiState.showProgressBar? View.VISIBLE : View.GONE}" />
 
-            </FrameLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/reviewCount"
+                    style="@style/NormalTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="@{uiState.errorMessage}"
+                    app:layout_constraintEnd_toEndOf="@id/location"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toStartOf="@id/guide"
+                    app:layout_constraintTop_toBottomOf="@id/title"
+                    tools:text="3 Reviews" />
+
+            </LinearLayout>
 
         </FrameLayout>
 

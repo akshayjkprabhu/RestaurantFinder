@@ -24,15 +24,15 @@ open class BaseViewModel : ViewModel() {
 	/**
 	 * Call this only on a main thread
 	 */
-	fun showProgressBar(show : Boolean) {
+	protected fun showProgressBar(show : Boolean) {
 		uiHelperLiveData.value = UIStateModel(showProgressBar = show)
 	}
 	
-	fun onError(message : String) {
+	protected fun onError(message : String) {
 		uiHelperLiveData.value = UIStateModel(errorMessage = message)
 	}
 	
-	fun toastMessage(message : String) {
+	protected fun toastMessage(message : String) {
 		uiHelperLiveData.value = UIStateModel(toastMessage = message)
 	}
 }

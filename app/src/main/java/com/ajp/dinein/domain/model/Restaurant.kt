@@ -8,6 +8,7 @@ data class Restaurant(
 		val location : String?,
 		val reviewCount : Int
 ) : Matcher, IListItem {
+	
 	override fun matches(searchTerm : String) : Boolean {
 		return restaurantName has searchTerm ||
 		       cuisineType has searchTerm
@@ -61,7 +62,7 @@ interface IListItem {
 }
 
 enum class ItemType(val id : Int) {
-	HEADER(1),
-	ERROR(2),
+	//	HEADER(1),
+//	ERROR(2),
 	CONTENT(3)
 }

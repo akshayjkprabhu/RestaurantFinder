@@ -46,21 +46,22 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/cuisine"
+                style="@style/NormalTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:alpha=".7"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@{data.cuisineType}"
-                style="@style/NormalTextStyle"
-                android:alpha=".7"
                 app:layout_constraintEnd_toEndOf="@id/title"
                 app:layout_constraintStart_toStartOf="@id/title"
                 app:layout_constraintTop_toBottomOf="@id/title"
-                tools:text="Indian, Veg"/>
+                tools:text="Indian, Veg" />
 
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/location"
+                style="@style/NormalTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@android:drawable/ic_lock_idle_alarm"
@@ -68,8 +69,6 @@
                 android:gravity="end"
                 android:maxLines="2"
                 android:text="@{data.location}"
-                android:textColor="@color/teal_700"
-                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toStartOf="@id/guide"
@@ -78,14 +77,12 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/reviewCount"
+                style="@style/NormalTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:maxLines="2"
                 android:text="@{data.reviews()}"
-                android:textColor="@color/teal_700"
-                android:textSize="14sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/location"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toStartOf="@id/guide"

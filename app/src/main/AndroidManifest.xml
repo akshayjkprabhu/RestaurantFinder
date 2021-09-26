@@ -10,13 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DineIn">
-
-        <activity
-            android:name=".presentation.ui.launcher.Launcher"
-            android:exported="true">
-
-        </activity>
-
         <activity
             android:name=".presentation.ui.home.HomeActivity"
             android:exported="true"

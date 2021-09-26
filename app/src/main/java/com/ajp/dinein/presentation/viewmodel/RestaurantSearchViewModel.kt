@@ -6,8 +6,8 @@ import com.ajp.dinein.core.base.BaseViewModel
 import com.ajp.dinein.core.util.Logger
 import com.ajp.dinein.domain.model.Error
 import com.ajp.dinein.domain.model.Restaurant
-import com.ajp.dinein.domain.usecase.search.SearchUseCase
 import com.ajp.dinein.domain.usecase.UseCaseResult
+import com.ajp.dinein.domain.usecase.search.SearchUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
@@ -24,8 +24,12 @@ class RestaurantSearchViewModel(private val searchUseCase : SearchUseCase) : Bas
 	
 	val restaurantResults : MutableLiveData<List<Restaurant>> = MutableLiveData()
 	
-	var searchTypingTimer : Timer = Timer()
+	private var searchTypingTimer : Timer = Timer()
 	
+	/**
+	 * Ignore API call request is user is still typing
+	 * for a delay of [SEARCH_DELAY]
+	 */
 	fun onSearchTextChanged(searchText : String?) {
 		viewModelScope.launch(Dispatchers.IO) {
 			onMain { showProgressBar(true) }
@@ -40,8 +44,11 @@ class RestaurantSearchViewModel(private val searchUseCase : SearchUseCase) : Bas
 		}
 	}
 	
+	/**
+	 * makes search API call and updates the result live data
+	 */
 	private fun searchForRestaurants(searchText : String?) {
-		viewModelScope.launch {
+		viewModelScope.launch(Dispatchers.IO) {
 			onMain { showProgressBar(true) }
 			val result = searchUseCase.searchRestaurant(searchText)
 			onMain {
@@ -54,17 +61,13 @@ class RestaurantSearchViewModel(private val searchUseCase : SearchUseCase) : Bas
 						handleSearchError(result.exception)
 					}
 				}
-				
 			}
 		}
-		
 	}
 	
 	private fun handleSearchError(exception : Error) {
 		restaurantResults.value = emptyList()
-		when (exception.errorType) {
-			// Handle differnt errors
-		}
+		onError(exception.message())
 	}
 	
 	override fun onCleared() {

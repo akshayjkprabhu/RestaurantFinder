@@ -6,6 +6,9 @@ import com.ajp.dinein.domain.model.MenuItem
 import com.ajp.dinein.domain.model.Restaurant
 import com.ajp.dinein.domain.model.RestaurantMenu
 
+/**
+ * converts [RestaurantListResponse]  to list of [Restaurant]
+ */
 internal fun RestaurantListResponse?.toListOfRestaurants() : List<Restaurant> {
 	if (this == null || restaurants.isNullOrEmpty()) {
 		return emptyList()
@@ -23,6 +26,9 @@ internal fun RestaurantListResponse?.toListOfRestaurants() : List<Restaurant> {
 	}
 }
 
+/**
+ * converts [MenuResponse]  to list of [RestaurantMenu]
+ */
 internal fun MenuResponse?.toMenuList() : List<RestaurantMenu> {
 	if (this == null || this.menuList == null) {
 		return emptyList()

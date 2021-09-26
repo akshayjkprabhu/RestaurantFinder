@@ -13,10 +13,6 @@ abstract class BaseFragment<ViewModel : BaseViewModel> : Fragment() {
 	
 	private lateinit var mBaseBinder : FragmentBaseBinding
 	
-	companion object {
-		const val TAG = "BaseFragment"
-	}
-	
 	override fun onCreateView(
 			inflater : LayoutInflater,
 			container : ViewGroup?,
@@ -29,6 +25,9 @@ abstract class BaseFragment<ViewModel : BaseViewModel> : Fragment() {
 		return mBaseBinder.root
 	}
 	
+	/**
+	 * Initialize the toolbar and listen to the search query changes
+	 */
 	private fun initToolbar() {
 		with(mBaseBinder.toolBar) {
 			searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -45,6 +44,9 @@ abstract class BaseFragment<ViewModel : BaseViewModel> : Fragment() {
 		}
 	}
 	
+	/**
+	 * Observe UI live data and calls the [observeLiveData] of child classes
+	 */
 	private fun observeLiveData() {
 		val viewModel = viewModel() ?: return
 		with(viewModel) {
@@ -57,6 +59,9 @@ abstract class BaseFragment<ViewModel : BaseViewModel> : Fragment() {
 		mBaseBinder.uiState = uiStateModel
 	}
 	
+	/**
+	 * Inflate the view, and add it to the parent container
+	 */
 	abstract fun inflateContent(inflater : LayoutInflater, container : FrameLayout) : View?
 	
 	abstract fun viewModel() : ViewModel?

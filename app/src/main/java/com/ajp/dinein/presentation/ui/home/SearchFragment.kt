@@ -59,7 +59,7 @@ class SearchFragment : BaseFragment<RestaurantSearchViewModel>() {
 	}
 	
 	private fun fetchRestaurantList() {
-		viewModel.onSearchTextChanged("")
+		viewModel.onSearchTextChanged(null)
 	}
 	
 	override fun searchTextChanged(searchText : String?) {

@@ -14,7 +14,9 @@ import com.ajp.dinein.domain.repo.RestaurantRepository
 import java.lang.Exception
 
 class RestaurantRepositoryImpl(private val dataSource : SearchDataSource) : RestaurantRepository {
-	
+	/**
+	 * Fetches the Restaurant list response and converts to the Data models of the domain layer
+	 */
 	override suspend fun fetchRestaurants() : RepositoryResult<List<Restaurant>> {
 		return try {
 			val res = dataSource.fetchRestaurantsAsync()
@@ -22,13 +24,16 @@ class RestaurantRepositoryImpl(private val dataSource : SearchDataSource) : Rest
 			// check all the cases in error handling
 		} catch (e : JsonFileReader.JsonReaderException) {
 			Logger.d(TAG, "Exception : $e")
-			RepositoryResult.Failure(Error((ErrorType.UNDEFINED)))
+			RepositoryResult.Failure(Error((ErrorType.COULD_NOT_FETCH)))
 		} catch (e : Exception) {
 			Logger.d(TAG, "Exception : $e")
-			RepositoryResult.Failure(Error((ErrorType.UNDEFINED)))
+			RepositoryResult.Failure(Error((ErrorType.COULD_NOT_FETCH)))
 		}
 	}
 	
+	/**
+	 * Fetches the Menu list response and converts to the Data models of the domain layer
+	 */
 	override suspend fun fetchMenuItems() : RepositoryResult<List<RestaurantMenu>> {
 		return try {
 			val res = dataSource.fetchMenuAsync()
@@ -36,10 +41,10 @@ class RestaurantRepositoryImpl(private val dataSource : SearchDataSource) : Rest
 			// check all the cases in error handling
 		} catch (e : JsonFileReader.JsonReaderException) {
 			Logger.d(TAG, "Exception : $e")
-			RepositoryResult.Failure(Error((ErrorType.UNDEFINED)))
+			RepositoryResult.Failure(Error((ErrorType.COULD_NOT_FETCH)))
 		} catch (e : Exception) {
 			Logger.d(TAG, "Exception : $e")
-			RepositoryResult.Failure(Error((ErrorType.UNDEFINED)))
+			RepositoryResult.Failure(Error((ErrorType.COULD_NOT_FETCH)))
 		}
 	}
 	

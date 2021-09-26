@@ -8,11 +8,6 @@ import com.ajp.dinein.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
 	
-	
-	companion object {
-		const val TAG = "HomeActivity"
-	}
-	
 	override fun onCreate(savedInstanceState : Bundle?) {
 		super.onCreate(savedInstanceState)
 		val binder = DataBindingUtil.setContentView<ActivityHomeBinding>(this, R.layout.activity_home)
