@@ -20,7 +20,6 @@ class JsonFileReaderTest {
 	@Before
 	fun initialize() {
 		context = InstrumentationRegistry.getInstrumentation().targetContext
-		
 	}
 	
 	@Test

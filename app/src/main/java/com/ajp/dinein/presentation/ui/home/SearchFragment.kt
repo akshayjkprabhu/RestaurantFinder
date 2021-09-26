@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajp.dinein.core.base.BaseFragment
+import com.ajp.dinein.core.util.Logger
 import com.ajp.dinein.databinding.FragmentSearchResultsBinding
 import com.ajp.dinein.domain.model.Restaurant
 import com.ajp.dinein.presentation.viewmodel.RestaurantSearchViewModel
@@ -62,5 +63,10 @@ class SearchFragment : BaseFragment<RestaurantSearchViewModel>() {
 	
 	private fun fetchRestaurantList() {
 		viewModel.searchRestaurantFor("")
+	}
+	
+	override fun searchTextChanged(searchText : String?) {
+		Logger.d(TAG, "searchTextChanged $searchText")
+		viewModel.searchRestaurantFor(searchText)
 	}
 }

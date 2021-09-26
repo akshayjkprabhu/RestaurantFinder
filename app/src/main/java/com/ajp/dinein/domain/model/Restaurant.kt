@@ -6,8 +6,8 @@ data class Restaurant(
 		val cuisineType : String
 ) : Matcher, IListItem {
 	override fun matches(searchTerm : String) : Boolean {
-		return restaurantName matches searchTerm ||
-		       cuisineType matches searchTerm
+		return restaurantName has searchTerm ||
+		       cuisineType has searchTerm
 	}
 	
 	override fun itemType() = ItemType.CONTENT
@@ -39,12 +39,12 @@ data class MenuItem(
 ) : Matcher {
 	
 	override fun matches(searchTerm : String) : Boolean {
-		return itemName matches searchTerm
+		return itemName has searchTerm
 	}
 }
 
-private infix fun String.matches(searchTerm : String) : Boolean {
-	return lowercase().contains(searchTerm.lowercase())
+infix fun String.has(searchTerm : String) : Boolean {
+	return this.lowercase().contains(searchTerm.lowercase())
 }
 
 interface Matcher {

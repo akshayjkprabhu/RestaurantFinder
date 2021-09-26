@@ -7,7 +7,9 @@ import kotlinx.coroutines.withContext
 
 open class BaseViewModel : ViewModel() {
 	
-	val uiHelperLiveData = MutableLiveData<UIStateModel>()
+	val uiHelperLiveData = MutableLiveData<UIStateModel>().apply {
+		UIStateModel()
+	}
 	
 	/**
 	 * Use this to run any block of code on Main thread

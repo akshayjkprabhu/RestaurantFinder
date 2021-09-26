@@ -7,6 +7,8 @@
         <entry key="app/src/main/res/layout/fragment_base.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/fragment_search_results.xml" value="0.153125" />
         <entry key="app/src/main/res/layout/item_restaurant.xml" value="0.25052083333333336" />
+        <entry key="app/src/main/res/layout/layout_tool_bar.xml" value="0.29322916666666665" />
+        <entry key="app/src/main/res/menu/home_menu.xml" value="0.29322916666666665" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.371875" />
       </map>
     </option>

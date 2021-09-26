@@ -14,10 +14,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/content"
+        <LinearLayout
+            android:id="@+id/contentContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolBar"
+                layout="@layout/layout_tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{uiState.enableSearchView? View.VISIBLE : View.GONE}" />
+
+            <FrameLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"

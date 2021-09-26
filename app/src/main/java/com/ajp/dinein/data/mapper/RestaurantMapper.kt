@@ -13,7 +13,7 @@ internal fun RestaurantListResponse?.toListOfRestaurants() : List<Restaurant> {
 		Restaurant(
 				restaurantId = it.id,
 				restaurantName = it.name,
-				cuisineType = it.name
+				cuisineType = it.cuisineType
 				/*it.cuisineType.split(",")*/
 		)
 	}

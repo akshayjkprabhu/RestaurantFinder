@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.ajp.dinein.R
 import com.ajp.dinein.databinding.ActivityHomeBinding
-import com.ajp.dinein.presentation.viewmodel.RestaurantSearchViewModel
-import org.koin.android.ext.android.inject
 
 class HomeActivity : AppCompatActivity() {
 	
