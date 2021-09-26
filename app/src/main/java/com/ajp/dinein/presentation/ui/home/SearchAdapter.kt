@@ -34,7 +34,7 @@ class SearchAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 		return searchItemList?.get(position)?.itemType()?.id ?: 0
 	}
 	
-	fun updateList(list : List<Restaurant>) {
+	fun updateList(list : List<Restaurant>?) {
 		this.searchItemList = list
 		notifyDataSetChanged()
 	}

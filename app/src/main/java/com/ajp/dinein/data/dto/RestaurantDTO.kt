@@ -7,23 +7,39 @@ import com.google.gson.annotations.SerializedName
  */
 data class RestaurantListResponse(
 		@SerializedName("restaurants")
-		val restaurants : List<Restaurant>?
+		val restaurants : List<RestaurantDTO>?
 ) : BaseResponse()
 
-data class Restaurant(
+data class RestaurantDTO(
 		@SerializedName("id") val id : Int,
 		@SerializedName("name") val name : String,
 		@SerializedName("cuisine_type") val cuisineType : String
 )
 
 data class MenuResponse(
-		val menuList : List<RestaurantMenu>? = null
+		@SerializedName("menus")
+		val menuList : List<RestaurantMenuDTO>? = null
 )
 
-data class RestaurantMenu(
-		val restaurantId : Int
+data class RestaurantMenuDTO(
+		@SerializedName("restaurantId")
+		val restaurantId : Int,
+		@SerializedName("categories")
+		val categories : List<CategoryDTO>?
 )
 
-data class Category(val categoryId : Int)
+data class CategoryDTO(
+		@SerializedName("id")
+		val categoryId : Int,
+		@SerializedName("name")
+		val categoryName : String,
+		@SerializedName("menu-items")
+		val items : List<ItemDTO>?
+)
 
-data class Item(val itemId : Int)
+data class ItemDTO(
+		@SerializedName("id")
+		val itemId : Int,
+		@SerializedName("name")
+		val itemName : String
+)

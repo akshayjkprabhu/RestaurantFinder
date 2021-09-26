@@ -1,4 +1,4 @@
-package com.ajp.dinein.model
+package com.ajp.dinein.domain.model
 
 data class Error(
 		val errorType : ErrorType,

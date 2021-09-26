@@ -10,10 +10,12 @@ import com.ajp.dinein.domain.usecase.search.SearchUseCase
 import com.ajp.dinein.domain.usecase.UseCaseResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 
 class RestaurantSearchViewModel(private val searchUseCase : SearchUseCase) : BaseViewModel() {
 	companion object {
 		const val TAG = "RestaurantSearchViewModel"
+		const val SEARCH_DELAY = 600L
 	}
 	
 	init {
@@ -22,15 +24,26 @@ class RestaurantSearchViewModel(private val searchUseCase : SearchUseCase) : Bas
 	
 	val restaurantResults : MutableLiveData<List<Restaurant>> = MutableLiveData()
 	
-	fun searchRestaurantFor(searchText : String?) {
-		
+	var searchTypingTimer : Timer = Timer()
+	
+	fun onSearchTextChanged(searchText : String?) {
 		viewModelScope.launch(Dispatchers.IO) {
-			onMain {
-				showProgressBar(true)
-			}
+			onMain { showProgressBar(true) }
 			
+			searchTypingTimer.cancel()
+			searchTypingTimer = Timer()
+			searchTypingTimer.schedule(object : TimerTask() {
+				override fun run() {
+					searchForRestaurants(searchText)
+				}
+			}, SEARCH_DELAY)
+		}
+	}
+	
+	private fun searchForRestaurants(searchText : String?) {
+		viewModelScope.launch {
+			onMain { showProgressBar(true) }
 			val result = searchUseCase.searchRestaurant(searchText)
-			
 			onMain {
 				showProgressBar(false)
 				when (result) {
@@ -44,11 +57,18 @@ class RestaurantSearchViewModel(private val searchUseCase : SearchUseCase) : Bas
 				
 			}
 		}
+		
 	}
 	
 	private fun handleSearchError(exception : Error) {
+		restaurantResults.value = emptyList()
 		when (exception.errorType) {
 			// Handle differnt errors
 		}
+	}
+	
+	override fun onCleared() {
+		super.onCleared()
+		searchTypingTimer.cancel()
 	}
 }

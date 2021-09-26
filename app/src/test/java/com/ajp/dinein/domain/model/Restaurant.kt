@@ -1,7 +1,5 @@
-package com.ajp.dinein.model
+package com.ajp.dinein.domain.model
 
-import com.ajp.dinein.domain.model.Restaurant
-import com.ajp.dinein.domain.model.has
 import junit.framework.Assert.assertEquals
 import org.junit.After
 import org.junit.Before

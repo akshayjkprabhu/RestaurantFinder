@@ -10,47 +10,48 @@
         <import type="android.view.View" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include
+            android:id="@+id/toolBar"
+            layout="@layout/layout_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{uiState.enableSearchView? View.VISIBLE : View.GONE}" />
+
+        <FrameLayout
             android:id="@+id/contentContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/toolBar"
-                layout="@layout/layout_tool_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="@{uiState.enableSearchView? View.VISIBLE : View.GONE}" />
-
             <FrameLayout
                 android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_height="match_parent" />
 
-        </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="@{uiState.enableMessageView ? View.VISIBLE : View.GONE}">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:clickable="true"
-            android:focusable="true"
-            android:visibility="@{uiState.enableMessageView ? View.VISIBLE : View.GONE}">
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{uiState.showProgressBar? View.VISIBLE : View.GONE}" />
 
-            <ProgressBar
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:visibility="@{uiState.showProgressBar? View.VISIBLE : View.GONE}" />
+            </FrameLayout>
 
         </FrameLayout>
 
-    </FrameLayout>
+
+    </LinearLayout>
 
 </layout>

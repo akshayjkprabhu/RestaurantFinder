@@ -41,9 +41,6 @@ class SearchFragment : BaseFragment<RestaurantSearchViewModel>() {
 	}
 	
 	private fun onSearchResults(list : List<Restaurant>?) {
-		if (list == null || list.isEmpty()) {
-			return
-		}
 		searchAdapter.updateList(list)
 	}
 	
@@ -62,11 +59,11 @@ class SearchFragment : BaseFragment<RestaurantSearchViewModel>() {
 	}
 	
 	private fun fetchRestaurantList() {
-		viewModel.searchRestaurantFor("")
+		viewModel.onSearchTextChanged("")
 	}
 	
 	override fun searchTextChanged(searchText : String?) {
 		Logger.d(TAG, "searchTextChanged $searchText")
-		viewModel.searchRestaurantFor(searchText)
+		viewModel.onSearchTextChanged(searchText)
 	}
 }
