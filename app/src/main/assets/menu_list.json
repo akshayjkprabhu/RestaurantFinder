@@ -18,7 +18,7 @@
             {
               "id": "94301",
               "name": "Chicken Livers and Portuguese Roll",
-              "description": "Chicken Livers Topped with PERi-PERi Sauce, Served with A Roll To Soak Up The Sauce ",
+              "description": "Chicken Livers Topped with PERi-PERi Sauce, Served with A Roll To Soak Up The Sauce",
               "price": "250.00",
               "images": [
               ]
@@ -53,12 +53,12 @@
       "restaurantId": 3,
       "categories": [
         {
-          "id": "26576",
-          "name": "Appeteasers",
+          "id": "26577",
+          "name": "Burgers",
           "menu-items": [
             {
               "id": "94298",
-              "name": "3 Chicken Wings",
+              "name": "McAloo Tikki Burger",
               "description": "Tender, Spicy and Juicy. Original or Peri-Crusted",
               "price": "250.00",
               "images": [
@@ -66,7 +66,7 @@
             },
             {
               "id": "94301",
-              "name": "Chicken Livers and Portuguese Roll",
+              "name": "McChicken Burger",
               "description": "Chicken Livers Topped with PERi-PERi Sauce, Served with A Roll To Soak Up The Sauce ",
               "price": "250.00",
               "images": [
@@ -75,12 +75,12 @@
           ]
         },
         {
-          "id": "26588",
-          "name": "Peri-peri chicken",
+          "id": "26589",
+          "name": "Beverages",
           "menu-items": [
             {
               "id": "94349",
-              "name": "1/4 Chicken",
+              "name": "Coke",
               "description": "Quarter Chicken Marinated with PERi-PERi Sauce and Grilled",
               "price": "385.00",
               "images": [
@@ -88,7 +88,78 @@
             },
             {
               "id": "94352",
-              "name": "1/2 Chicken",
+              "name": "Fanta",
+              "description": "Half Chicken Marinated with PERi-PERi Sauce and Grilled",
+              "price": "685.00",
+              "images": [
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26600",
+          "name": "Hot Drinks",
+          "menu-items": [
+            {
+              "id": "94349",
+              "name": "McCoffee",
+              "description": "Quarter Chicken Marinated with PERi-PERi Sauce and Grilled",
+              "price": "385.00",
+              "images": [
+              ]
+            },
+            {
+              "id": "94352",
+              "name": "Tea",
+              "description": "Half Chicken Marinated with PERi-PERi Sauce and Grilled",
+              "price": "685.00",
+              "images": [
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "restaurantId": 2,
+      "categories": [
+        {
+          "id": "26578",
+          "name": "Meal",
+          "menu-items": [
+            {
+              "id": "94298",
+              "name": "South Indian Meal",
+              "description": "Tender, Spicy and Juicy. Original or Peri-Crusted",
+              "price": "250.00",
+              "images": [
+              ]
+            },
+            {
+              "id": "94301",
+              "name": "North Indian Meal",
+              "description": "Chicken Livers Topped with PERi-PERi Sauce, Served with A Roll To Soak Up The Sauce ",
+              "price": "250.00",
+              "images": [
+              ]
+            }
+          ]
+        },
+        {
+          "id": "26590",
+          "name": "Starters",
+          "menu-items": [
+            {
+              "id": "94349",
+              "name": "Paneer Tikka",
+              "description": "Quarter Chicken Marinated with PERi-PERi Sauce and Grilled",
+              "price": "385.00",
+              "images": [
+              ]
+            },
+            {
+              "id": "94352",
+              "name": "Mashroom Tikka",
               "description": "Half Chicken Marinated with PERi-PERi Sauce and Grilled",
               "price": "685.00",
               "images": [
