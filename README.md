@@ -1,3 +1,5 @@
+This project was done for evaluation purpose
+
 Specifications :
 1. Architecture - MVVM Clean architecture
 2. Language - Kotlin
@@ -16,3 +18,4 @@ Libraries used
 3. Cardview
 4. Recycler View
 5. Android x activity and fragment
+
